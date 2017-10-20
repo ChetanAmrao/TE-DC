@@ -1,0 +1,195 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>amplitudeMod</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-10-21"><meta name="DC.source" content="amplitudeMod.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">AMPLITUDE MODULATOIN IN MATLAB</a></li><li><a href="#2">Define AM modulation Index</a></li><li><a href="#3">MESSAGE SIGNAL</a></li><li><a href="#4">Graphical representation of Modulating signal</a></li><li><a href="#5">CARRIER</a></li><li><a href="#6">Graphical representation of carrier signal</a></li><li><a href="#7">AM Modulation</a></li><li><a href="#8">Graphical representation of AM signal</a></li></ul></div><h2>AMPLITUDE MODULATOIN IN MATLAB<a name="1"></a></h2><p>Here we can get through what is meant by the concept of AM in a simple MATLAB code Clearing out memory</p><pre class="codeinput">clc;
+close <span class="string">all</span>;
+clear <span class="string">all</span>;
+</pre><h2>Define AM modulation Index<a name="2"></a></h2><p>This means how much is the amount of message signal in carrier which can be taken as input but not in HTML obviously</p><pre class="codeinput">m=input(<span class="string">' Enter the value of modulation index (m) = '</span>);
+<span class="comment">% m=1; % for 100% modulation</span>
+<span class="keyword">if</span> (0&gt;m||m&gt;1)
+error(<span class="string">'m may be less than or equal to one and geter than to zero'</span>);
+<span class="keyword">end</span>
+</pre><pre class="codeoutput error">Error using input
+Cannot call INPUT from EVALC.
+
+Error in amplitudeMod (line 11)
+m=input(' Enter the value of modulation index (m) = ');
+</pre><h2>MESSAGE SIGNAL<a name="3"></a></h2><p>Here we create a message signal for our simulation Amplitude of modulating signal</p><pre class="codeinput">Am=5;
+<span class="comment">% Frequency of modulating signal</span>
+fa=2000;
+<span class="comment">% Time period of modulating signal</span>
+Ta=1/fa;
+<span class="comment">% Total time for simulation</span>
+t=0:Ta/999:6*Ta;
+<span class="comment">% Eqation of modulating signal</span>
+ym=Am*sin(2*pi*fa*t);
+</pre><h2>Graphical representation of Modulating signal<a name="4"></a></h2><p>This plots the message signal also called as the modulating signal</p><pre class="codeinput">subplot(2,2,1);
+plot(t,ym), grid <span class="string">on</span>;
+t1=title ( <span class="string">'  Modulating Signal   '</span>);
+t1.Color = <span class="string">'blue'</span>;
+xlabel ( <span class="string">' time(sec) '</span>);
+ylabel (<span class="string">' Amplitude(volt)   '</span>);
+</pre><h2>CARRIER<a name="5"></a></h2><p>We create our carrier wave for amplitude modulation Amplitude of carrier signal [ where, modulation Index (m)=Am/Ac ]</p><pre class="codeinput">Ac=Am/m;
+<span class="comment">% Frequency of carrier signal</span>
+fc=fa*10;
+<span class="comment">% Time period of carrier signal</span>
+Tc=1/fc;
+<span class="comment">% Eqation of carrier signal</span>
+yc=Ac*sin(2*pi*fc*t);
+</pre><h2>Graphical representation of carrier signal<a name="6"></a></h2><p>This section plots our carrier wave, here notice the difference as carrier wave has a higher frequency it has more peaks and troughs than the message signal</p><pre class="codeinput">subplot(2,2,2);
+plot(t,yc,<span class="string">'r'</span>), grid <span class="string">on</span>;
+t2=title ( <span class="string">'  Carrier Signal   '</span>);
+t2.Color = <span class="string">'red'</span>;
+xlabel ( <span class="string">' time(sec) '</span>);
+ylabel (<span class="string">' Amplitude(volt)   '</span>);
+</pre><h2>AM Modulation<a name="7"></a></h2><p>To create this simulated Amplitude Modulation we create this AM wave using the equation given below Equation of Amplitude modulated signal</p><pre class="codeinput">y=Ac*(1+m*sin(2*pi*fa*t)).*sin(2*pi*fc*t);
+</pre><h2>Graphical representation of AM signal<a name="8"></a></h2><p>Finlly we plot the AM wave (Yea!!)</p><pre class="codeinput">subplot(2,2,[3,4]);
+plot(t,y,<span class="string">'g'</span>);
+t3=title ( <span class="string">'  Amplitude Modulated signal  '</span>);
+t3.Color = <span class="string">'green'</span>;
+xlabel ( <span class="string">' time(sec) '</span>);
+ylabel (<span class="string">' Amplitude(volt)   '</span>);
+grid <span class="string">on</span>;
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">HONESTLY THANKING MATHWORKS FOR THEIR SUPPORT!</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% AMPLITUDE MODULATOIN IN MATLAB
+% Here we can get through what is meant by the concept of AM in a simple
+% MATLAB code
+% Clearing out memory
+clc;
+close all;
+clear all;
+%% Define AM modulation Index
+% This means how much is the amount of message signal in carrier which can
+% be taken as input but not in HTML obviously
+m=input(' Enter the value of modulation index (m) = ');
+% m=1; % for 100% modulation
+if (0>m||m>1)
+error('m may be less than or equal to one and geter than to zero'); 
+end
+%% MESSAGE SIGNAL
+% Here we create a message signal for our simulation
+% Amplitude of modulating signal
+Am=5; 
+% Frequency of modulating signal
+fa=2000; 
+% Time period of modulating signal
+Ta=1/fa; 
+% Total time for simulation
+t=0:Ta/999:6*Ta; 
+% Eqation of modulating signal
+ym=Am*sin(2*pi*fa*t); 
+%%  Graphical representation of Modulating signal
+% This plots the message signal also called as the modulating signal
+subplot(2,2,1); 
+plot(t,ym), grid on;
+t1=title ( '  Modulating Signal   ');
+t1.Color = 'blue';
+xlabel ( ' time(sec) ');
+ylabel (' Amplitude(volt)   ');
+
+%%  CARRIER
+% We create our carrier wave for amplitude modulation
+% Amplitude of carrier signal [ where, modulation Index (m)=Am/Ac ]
+Ac=Am/m;
+% Frequency of carrier signal
+fc=fa*10;
+% Time period of carrier signal
+Tc=1/fc;
+% Eqation of carrier signal
+yc=Ac*sin(2*pi*fc*t);
+%% Graphical representation of carrier signal
+% This section plots our carrier wave, here notice the difference as 
+% carrier wave has a higher frequency it has more peaks and troughs than 
+% the message signal
+subplot(2,2,2);
+plot(t,yc,'r'), grid on;
+t2=title ( '  Carrier Signal   ');
+t2.Color = 'red';
+xlabel ( ' time(sec) ');
+ylabel (' Amplitude(volt)   ');
+
+%% AM Modulation
+% To create this simulated Amplitude Modulation we create this AM wave
+% using the equation given below
+% Equation of Amplitude modulated signal
+y=Ac*(1+m*sin(2*pi*fa*t)).*sin(2*pi*fc*t); 
+
+%%  Graphical representation of AM signal
+% Finlly we plot the AM wave (Yea!!)
+subplot(2,2,[3,4]);
+plot(t,y,'g');
+t3=title ( '  Amplitude Modulated signal  ');
+t3.Color = 'green';
+xlabel ( ' time(sec) ');
+ylabel (' Amplitude(volt)   ');
+grid on;
+
+<img src="amplitudeMod_m_equals_1.png" alt="OUTPUT" width="683" height="346">
+##### SOURCE END #####
+--></body></html>
